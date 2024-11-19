@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paper Trading with High-Tech Design</title>
+  <title>High-Tech Stock Market Simulator</title>
   <style>
     /* General Styling */
     body {
@@ -29,7 +29,7 @@
       padding: 15px;
       border-radius: 8px;
       width: 90%;
-      max-width: 800px;
+      max-width: 1000px;
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     }
     .stock, .holding {
@@ -86,7 +86,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <h1>High-Tech Paper Trading Simulator</h1>
+  <h1>Realistic Stock Market Simulator</h1>
   <div id="stocks">
     <h2>Available Stocks</h2>
     <div id="stock-list"></div>
@@ -99,16 +99,21 @@
   </div>
 
   <script>
-    // Initial Data
+    // Initial Stock Data
     const stocks = [
       { id: 1, name: "AAPL", price: 150, history: [150] },
       { id: 2, name: "GOOG", price: 2800, history: [2800] },
       { id: 3, name: "AMZN", price: 3500, history: [3500] },
       { id: 4, name: "TSLA", price: 700, history: [700] },
+      { id: 5, name: "MSFT", price: 310, history: [310] },
+      { id: 6, name: "META", price: 280, history: [280] },
+      { id: 7, name: "NFLX", price: 480, history: [480] },
+      { id: 8, name: "NVDA", price: 450, history: [450] },
+      { id: 9, name: "AMD", price: 120, history: [120] },
     ];
 
     const portfolio = {
-      cash: 10000,
+      cash: 50000,
       holdings: [],
     };
 
@@ -243,10 +248,10 @@
     // Simulate Stock Price Updates
     function updateStockPrices() {
       stocks.forEach(stock => {
-        const fluctuation = (Math.random() - 0.5) / 20; // Random fluctuation
+        const fluctuation = (Math.random() - 0.5) * 0.05; // Random 5% fluctuation
         stock.price = +(stock.price * (1 + fluctuation)).toFixed(2);
         stock.history.push(stock.price);
-        if (stock.history.length > 20) stock.history.shift(); // Limit history length
+        if (stock.history.length > 50) stock.history.shift(); // Limit history length
       });
       renderStocks();
       const selectedStock = stocks.find(s => s.id === selectedStockId);
@@ -256,7 +261,7 @@
     // Initialize the App
     renderStocks();
     renderPortfolio();
-    setInterval(updateStockPrices, 3000); // Update prices every 3 seconds
+    setInterval(updateStockPrices, 1000); // Update prices every 1 second
   </script>
 </body>
 </html>
